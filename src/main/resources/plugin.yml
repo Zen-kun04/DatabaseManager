@@ -1,0 +1,4 @@
+name: Database Manager
+version: '${project.version}'
+main: com.donbaguette.databasemanager.DatabaseManager
+api-version: 1.19
