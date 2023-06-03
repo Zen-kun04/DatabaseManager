@@ -1,4 +1,13 @@
-name: Database Manager
+name: DatabaseManager
 version: '${project.version}'
 main: com.donbaguette.databasemanager.DatabaseManager
 api-version: 1.19
+commands:
+  databasemanager:
+    aliases:
+      - db
+      - dbman
+      - dm
+      - dbm
+      - dman
+    description: Main DatabaseManager command
