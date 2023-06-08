@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class InventoryClick implements Listener {
 
@@ -24,17 +25,38 @@ public class InventoryClick implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         String inventoryTitle = event.getView().getTitle();
+        Player player = (Player) event.getWhoClicked();
         if(inventoryTitle.equals("Database List")) {
-            Player player = (Player) event.getWhoClicked();
             player.closeInventory();
             String databaseName = ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName());
             player.openInventory(tableListing.createInv(databaseName));
             event.setCancelled(true);
         }else if(inventoryTitle.startsWith("Table List of ")) {
-            Player player = (Player) event.getWhoClicked();
             player.closeInventory();
             String tableName = ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName());
             player.openInventory(this.tableOptions.createInv(tableName));
+            event.setCancelled(true);
+        }else if(ChatColor.stripColor(inventoryTitle).startsWith("Settings for table:")) {
+            int slot = event.getSlot();
+            switch (slot) {
+                case 0:
+                    // show entities
+                    player.closeInventory();
+
+                    break;
+                case 2:
+                    // update entity
+                    break;
+                case 4:
+                    // Delete entity
+                    break;
+                case 6:
+                    // Get entity by
+                    break;
+                case 8:
+                    // create entity
+                    break;
+            }
             event.setCancelled(true);
         }
     }
